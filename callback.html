@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Authorization · GTA6 Clipper</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Authorization result</h1>
+  <p id="msg">Reading the authorization code…</p>
+  <pre id="code"></pre>
+  <p class="muted">Copy this code back into the GTA6 Clipper setup. It expires in a few minutes.</p>
+</main>
+<script>
+  const p = new URLSearchParams(location.search);
+  const code = p.get("code"), err = p.get("error");
+  document.getElementById("msg").textContent = code ? "Authorization code:" : (err ? "Authorization failed: " + err : "No code in this link.");
+  if (code) document.getElementById("code").textContent = code;
+</script>
+</body>
+</html>
